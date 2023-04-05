@@ -346,7 +346,7 @@ frappe.views.Workspace = class Workspace {
 	}
 
 	async show_page(page) {
-		this.body.attr("id", page.name)
+		$('body').attr("id", page.name)
 		if (!this.body.find("#editorjs")[0]) {
 			this.$page = $(`
 				<div id="editorjs" class="desk-page page-main-content"></div>
