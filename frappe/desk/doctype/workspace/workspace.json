@@ -32,7 +32,12 @@
   "quick_lists_tab",
   "quick_lists",
   "roles_tab",
-  "roles"
+  "roles",
+  "style_tab_brk",
+  "is_full_html",
+  "css",
+  "js",
+  "html"
  ],
  "fields": [
   {
@@ -194,11 +199,37 @@
    "fieldtype": "Table",
    "label": "Number Cards",
    "options": "Workspace Number Card"
+  },
+  {
+   "fieldname": "style_tab_brk",
+   "fieldtype": "Tab Break",
+   "label": "Style & Script"
+  },
+  {
+   "fieldname": "css",
+   "fieldtype": "HTML Editor",
+   "label": "CSS"
+  },
+  {
+   "fieldname": "js",
+   "fieldtype": "HTML Editor",
+   "label": "JS"
+  },
+  {
+   "fieldname": "html",
+   "fieldtype": "HTML Editor",
+   "label": "HTML"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_full_html",
+   "fieldtype": "Check",
+   "label": "is_full_HTML"
   }
  ],
  "in_create": 1,
  "links": [],
- "modified": "2023-02-15 01:16:56.035205",
+ "modified": "2023-04-05 11:28:11.342135",
  "modified_by": "Administrator",
  "module": "Desk",
  "name": "Workspace",

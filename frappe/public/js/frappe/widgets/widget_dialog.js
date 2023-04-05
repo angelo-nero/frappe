@@ -80,7 +80,7 @@ class WidgetDialog {
 		this.filter_group = new frappe.ui.FilterGroup({
 			parent: this.dialog.get_field("filter_area").$wrapper,
 			doctype: doctype,
-			on_change: () => {},
+			on_change: () => { },
 		});
 
 		frappe.model.with_doctype(doctype, () => {
@@ -350,7 +350,7 @@ class ShortcutDialog extends WidgetDialog {
 				fieldname: "type",
 				label: "Type",
 				reqd: 1,
-				options: "DocType\nReport\nPage\nDashboard",
+				options: "DocType\nReport\nPage\nDashboard\nLinks",
 				onchange: () => {
 					if (this.dialog.get_value("type") == "DocType") {
 						this.dialog.fields_dict.link_to.get_query = () => {
@@ -381,6 +381,7 @@ class ShortcutDialog extends WidgetDialog {
 				label: "Link To",
 				reqd: 1,
 				options: "type",
+				mandatory_depends_on: 'eval: doc.type !== "Links"',
 				onchange: () => {
 					const doctype = this.dialog.get_value("link_to");
 					if (doctype && this.dialog.get_value("type") == "DocType") {
@@ -419,6 +420,20 @@ class ShortcutDialog extends WidgetDialog {
 						let doctype = this.dialog.get_value("link_to");
 						let is_single = frappe.boot.single_types.includes(doctype);
 						return state.type == "DocType" && !is_single;
+					}
+
+					return false;
+				},
+			},
+			{
+				fieldtype: "Data",
+				fieldname: "url_to",
+				label: "URL",
+				options: "",
+				mandatory_depends_on: 'eval: doc.type == "Links"',
+				depends_on: (state) => {
+					if (this.dialog) {
+						return state.type == "Links";
 					}
 
 					return false;
@@ -473,6 +488,26 @@ class ShortcutDialog extends WidgetDialog {
 				fieldname: "format",
 				label: __("Format"),
 				description: __("For Example: {} Open"),
+			},
+			{
+				fieldtype: "Section Break",
+				fieldname: "sho_cust_section_break",
+				label: __("Shortcut Customizations"),
+				hidden: 0,
+			},
+			{
+				fieldtype: "Attach",
+				fieldname: "icon_img",
+				label: __("Icon")
+			},
+			{
+				fieldtype: "Column Break",
+				fieldname: "column_break_img_class",
+			},
+			{
+				fieldtype: "Data",
+				fieldname: "css_class",
+				label: __("Class CSS")
 			},
 		];
 	}

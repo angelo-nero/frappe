@@ -87,17 +87,16 @@ frappe.views.Workspace = class Workspace {
 			>
 				<div class="desk-sidebar-item standard-sidebar-item ${item.selected ? "selected" : ""}">
 					<a
-						href="/app/${
-							item.public
-								? frappe.router.slug(item.title)
-								: "private/" + frappe.router.slug(item.title)
-						}"
+						href="/app/${item.public
+				? frappe.router.slug(item.title)
+				: "private/" + frappe.router.slug(item.title)
+			}"
 						class="item-anchor ${item.is_editable ? "" : "block-click"}" title="${__(item.title)}"
 					>
 						<span class="sidebar-item-icon" item-icon=${item.icon || "folder-normal"}>${frappe.utils.icon(
-			item.icon || "folder-normal",
-			"md"
-		)}</span>
+				item.icon || "folder-normal",
+				"md"
+			)}</span>
 						<span class="sidebar-item-label">${__(item.title)}<span>
 					</a>
 					<div class="sidebar-item-control"></div>
@@ -288,6 +287,16 @@ frappe.views.Workspace = class Workspace {
 			.then((data) => {
 				this.page_data = data.message;
 
+				$(".layout-main-section #editorjs").append(this.page_data.html)
+
+				const style = document.createElement('style');
+				style.textContent = this.page_data.css;
+				document.head.append(style);
+
+				const js = document.createElement('script');
+				js.textContent = this.page_data.js;
+				document.head.append(js);
+
 				// caching page data
 				this.pages[page.name] && delete this.pages[page.name];
 				this.pages[page.name] = data.message;
@@ -300,9 +309,10 @@ frappe.views.Workspace = class Workspace {
 						let chart_config = settings.chart_config
 							? JSON.parse(settings.chart_config)
 							: {};
-						this.page_data.charts.items.map((chart) => {
-							chart.chart_settings = chart_config[chart.chart_name] || {};
-						});
+						if (this.page_data.charts !== undefined)
+							this.page_data.charts.items.map((chart) => {
+								chart.chart_settings = chart_config[chart.chart_name] || {};
+							});
 						this.pages[page.name] = this.page_data;
 					}
 				});
@@ -336,6 +346,7 @@ frappe.views.Workspace = class Workspace {
 	}
 
 	async show_page(page) {
+		this.body.attr("id", page.name)
 		if (!this.body.find("#editorjs")[0]) {
 			this.$page = $(`
 				<div id="editorjs" class="desk-page page-main-content"></div>

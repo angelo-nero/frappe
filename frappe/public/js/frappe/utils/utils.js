@@ -727,14 +727,14 @@ Object.assign(frappe.utils, {
 		var objPattern = new RegExp(
 			// Delimiters.
 			"(\\" +
-				strDelimiter +
-				"|\\r?\\n|\\r|^)" +
-				// Quoted fields.
-				'(?:"([^"]*(?:""[^"]*)*)"|' +
-				// Standard fields.
-				'([^"\\' +
-				strDelimiter +
-				"\\r\\n]*))",
+			strDelimiter +
+			"|\\r?\\n|\\r|^)" +
+			// Quoted fields.
+			'(?:"([^"]*(?:""[^"]*)*)"|' +
+			// Standard fields.
+			'([^"\\' +
+			strDelimiter +
+			"\\r\\n]*))",
 			"gi"
 		);
 
@@ -1206,7 +1206,7 @@ Object.assign(frappe.utils, {
 		},
 	},
 
-	icon(icon_name, size = "sm", icon_class = "", icon_style = "", svg_class = "") {
+	icon(icon_name, size = "sm", icon_class = "", icon_style = "", svg_class = "", icon_img = undefined) {
 		let size_class = "";
 
 		if (typeof size == "object") {
@@ -1214,9 +1214,12 @@ Object.assign(frappe.utils, {
 		} else {
 			size_class = `icon-${size}`;
 		}
-		return `<svg class="icon ${svg_class} ${size_class}" style="${icon_style}">
-			<use class="${icon_class}" href="#icon-${icon_name}"></use>
-		</svg>`;
+		if (icon_img === undefined)
+			return `<svg class="icon ${svg_class} ${size_class}" style="${icon_style}">
+				<use class="${icon_class}" href="#icon-${icon_name}"></use>
+			</svg>`;
+		else
+			return `<img  src="${icon_img}" class="${icon_class}" />`;
 	},
 
 	flag(country_code) {
@@ -1371,9 +1374,8 @@ Object.assign(frappe.utils, {
 	build_summary_item(summary) {
 		if (summary.type == "separator") {
 			return $(`<div class="summary-separator">
-				<div class="summary-value ${summary.color ? summary.color.toLowerCase() : "text-muted"}">${
-				summary.value
-			}</div>
+				<div class="summary-value ${summary.color ? summary.color.toLowerCase() : "text-muted"}">${summary.value
+				}</div>
 			</div>`);
 		}
 		let df = { fieldtype: summary.datatype };
@@ -1387,8 +1389,8 @@ Object.assign(frappe.utils, {
 		let color = summary.indicator
 			? summary.indicator.toLowerCase()
 			: summary.color
-			? summary.color.toLowerCase()
-			: "";
+				? summary.color.toLowerCase()
+				: "";
 
 		return $(`<div class="summary-item">
 			<span class="summary-label">${__(summary.label)}</span>
@@ -1400,17 +1402,17 @@ Object.assign(frappe.utils, {
 		let w = window.open(
 			frappe.urllib.get_full_url(
 				"/printview?doctype=" +
-					encodeURIComponent(doctype) +
-					"&name=" +
-					encodeURIComponent(docname) +
-					"&trigger_print=1" +
-					"&format=" +
-					encodeURIComponent(print_format) +
-					"&no_letterhead=" +
-					(letterhead ? "0" : "1") +
-					"&letterhead=" +
-					encodeURIComponent(letterhead) +
-					(lang_code ? "&_lang=" + lang_code : "")
+				encodeURIComponent(doctype) +
+				"&name=" +
+				encodeURIComponent(docname) +
+				"&trigger_print=1" +
+				"&format=" +
+				encodeURIComponent(print_format) +
+				"&no_letterhead=" +
+				(letterhead ? "0" : "1") +
+				"&letterhead=" +
+				encodeURIComponent(letterhead) +
+				(lang_code ? "&_lang=" + lang_code : "")
 			)
 		);
 

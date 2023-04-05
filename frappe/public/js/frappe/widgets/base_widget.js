@@ -98,7 +98,13 @@ export default class Widget {
 		let base = this.title || this.label || this.name;
 		let title = max_chars ? frappe.ellipsis(base, max_chars) : base;
 
-		if (this.icon) {
+		let icon_img = this.icon_img ? this.icon_img : "";
+
+		if (this.icon_img && this.icon_img !== "") {
+			let icon = frappe.utils.icon("", "lg", "sh_icon_img", "", "", this.icon_img)
+			this.title_field[0].innerHTML = `${icon} <span class="ellipsis" title="${title}">${title}</span>`;
+		}
+		else if (this.icon) {
 			let icon = frappe.utils.icon(this.icon, "lg");
 			this.title_field[0].innerHTML = `${icon} <span class="ellipsis" title="${title}">${title}</span>`;
 		} else {

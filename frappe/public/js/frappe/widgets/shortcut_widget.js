@@ -20,6 +20,9 @@ export default class ShortcutWidget extends Widget {
 			restrict_to_domain: this.restrict_to_domain,
 			stats_filter: this.stats_filter,
 			type: this.type,
+			url_to: this.url_to,
+			css_class: this.css_class,
+			icon_img: this.icon_img
 		};
 	}
 
@@ -27,25 +30,30 @@ export default class ShortcutWidget extends Widget {
 		this.widget.click((e) => {
 			if (this.in_customize_mode) return;
 
-			let route = frappe.utils.generate_route({
-				route: this.route,
-				name: this.link_to,
-				type: this.type,
-				is_query_report: this.is_query_report,
-				doctype: this.ref_doctype,
-				doc_view: this.doc_view,
-			});
-
-			let filters = frappe.utils.get_filter_from_json(this.stats_filter);
-			if (this.type == "DocType" && filters) {
-				frappe.route_options = filters;
+			if (this.type === 'Links') {
+				frappe.set_route(this.url_to)
 			}
+			else {
+				let route = frappe.utils.generate_route({
+					route: this.route,
+					name: this.link_to,
+					type: this.type,
+					is_query_report: this.is_query_report,
+					doctype: this.ref_doctype,
+					doc_view: this.doc_view,
+				});
 
-			if (e.ctrlKey || e.metaKey) {
-				frappe.open_in_new_tab = true;
+				let filters = frappe.utils.get_filter_from_json(this.stats_filter);
+				if (this.type == "DocType" && filters) {
+					frappe.route_options = filters;
+				}
+
+				if (e.ctrlKey || e.metaKey) {
+					frappe.open_in_new_tab = true;
+				}
+
+				frappe.set_route(route);
 			}
-
-			frappe.set_route(route);
 		});
 	}
 
@@ -53,6 +61,10 @@ export default class ShortcutWidget extends Widget {
 		if (this.in_customize_mode) return;
 
 		this.widget.addClass("shortcut-widget-box");
+		this.widget.addClass("shortcut-widget-hb");
+
+		if (this.css_class)
+			this.widget.addClass(this.css_class);
 
 		let filters = frappe.utils.get_filter_from_json(this.stats_filter);
 		if (this.type == "DocType" && filters) {

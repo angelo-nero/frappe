@@ -157,12 +157,20 @@ class Workspace:
 		return False
 
 	def build_workspace(self):
-		self.cards = {"items": self.get_links()}
-		self.charts = {"items": self.get_charts()}
-		self.shortcuts = {"items": self.get_shortcuts()}
-		self.onboardings = {"items": self.get_onboardings()}
-		self.quick_lists = {"items": self.get_quick_lists()}
-		self.number_cards = {"items": self.get_number_cards()}
+		self.is_full_html = self.get_isFullHtml()
+		if self.is_full_html == 1:
+			self.css = self.get_css()
+			self.js = self.get_js()
+			self.html = self.get_html()
+		else:
+			self.cards = {"items": self.get_links()}
+			self.charts = {"items": self.get_charts()}
+			self.shortcuts = {"items": self.get_shortcuts()}
+			self.onboardings = {"items": self.get_onboardings()}
+			self.quick_lists = {"items": self.get_quick_lists()}
+			self.number_cards = {"items": self.get_number_cards()}
+		self.css = self.get_css()
+		self.js = self.get_js()
 
 	def _doctype_contains_a_record(self, name):
 		exists = self.table_counts.get(name, False)
@@ -344,6 +352,18 @@ class Workspace:
 
 		return all_number_cards
 
+	@handle_not_exist
+	def get_css(self):
+		return self.doc.css
+	@handle_not_exist
+	def get_js(self):
+		return self.doc.js
+	@handle_not_exist
+	def get_html(self):
+		return self.doc.html
+	@handle_not_exist
+	def get_isFullHtml(self):
+		return self.doc.is_full_html
 
 @frappe.whitelist()
 @frappe.read_only()
@@ -360,13 +380,23 @@ def get_desktop_page(page):
 	try:
 		workspace = Workspace(loads(page))
 		workspace.build_workspace()
+		if workspace.is_full_html == 1:
+			return {
+				"is_full_html": workspace.is_full_html,
+				"css": workspace.css,
+				"js": workspace.js,
+				"html": workspace.html,
+			}
 		return {
+			"is_full_html": workspace.is_full_html,
 			"charts": workspace.charts,
 			"shortcuts": workspace.shortcuts,
 			"cards": workspace.cards,
 			"onboardings": workspace.onboardings,
 			"quick_lists": workspace.quick_lists,
 			"number_cards": workspace.number_cards,
+			"css": workspace.css,
+			"js": workspace.js,
 		}
 	except DoesNotExistError:
 		frappe.log_error("Workspace Missing")
