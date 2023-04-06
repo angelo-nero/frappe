@@ -31,7 +31,7 @@ export default class ShortcutWidget extends Widget {
 			if (this.in_customize_mode) return;
 
 			if (this.type === 'Links') {
-				frappe.set_route(this.url_to)
+				location.href = this.url_to;
 			}
 			else {
 				let route = frappe.utils.generate_route({
