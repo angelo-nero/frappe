@@ -8,6 +8,7 @@
  "hide_custom": 0,
  "icon": "tool",
  "idx": 0,
+ "is_full_html": 0,
  "is_hidden": 0,
  "label": "Build",
  "links": [
@@ -274,7 +275,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-04-05 11:06:28.397760",
+ "modified": "2023-04-06 11:43:19.902789",
  "modified_by": "Administrator",
  "module": "Core",
  "name": "Build",
@@ -292,7 +293,7 @@
    "doc_view": "List",
    "label": "zzzz",
    "type": "Links",
-   "url_to": "aaa"
+   "url_to": "http://www.google.com"
   },
   {
    "doc_view": "",

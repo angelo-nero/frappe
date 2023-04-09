@@ -153,7 +153,8 @@ class Workspace:
 			return True
 		if item_type == "dashboard":
 			return True
-
+		if item_type == "Links":
+			return True
 		return False
 
 	def build_workspace(self):
