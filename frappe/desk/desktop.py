@@ -170,6 +170,7 @@ class Workspace:
 			self.onboardings = {"items": self.get_onboardings()}
 			self.quick_lists = {"items": self.get_quick_lists()}
 			self.number_cards = {"items": self.get_number_cards()}
+		
 		self.css = self.get_css()
 		self.js = self.get_js()
 
