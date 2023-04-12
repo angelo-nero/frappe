@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"T-S6hrP8Ev\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"NNXyCCdg5v\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"DocType\",\"col\":3}},{\"id\":\"Qfq3LSGHgF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Workspace\",\"col\":3}},{\"id\":\"sTTkF5vKUm\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Report\",\"col\":3}},{\"id\":\"7lecJlUiIX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"zzzz\",\"col\":3}},{\"id\":\"nZBcUEp9qX\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"G75pEAMfz3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Elements</b></span>\",\"col\":12}},{\"id\":\"fNzBTM1yoH\",\"type\":\"card\",\"data\":{\"card_name\":\"Modules\",\"col\":4}},{\"id\":\"FIcaBFzFOX\",\"type\":\"card\",\"data\":{\"card_name\":\"Models\",\"col\":4}},{\"id\":\"j7EWIs-PNM\",\"type\":\"card\",\"data\":{\"card_name\":\"Views\",\"col\":4}},{\"id\":\"FN9mZJ3h18\",\"type\":\"card\",\"data\":{\"card_name\":\"Scripting\",\"col\":4}},{\"id\":\"1CwNqNGwlr\",\"type\":\"card\",\"data\":{\"card_name\":\"Packages\",\"col\":4}},{\"id\":\"T6ycb7L3qm\",\"type\":\"card\",\"data\":{\"card_name\":\"System Logs\",\"col\":4}}]",
+ "content": "[{\"id\":\"T-S6hrP8Ev\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"NNXyCCdg5v\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"DocType\",\"col\":3}},{\"id\":\"Qfq3LSGHgF\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Workspace\",\"col\":3}},{\"id\":\"sTTkF5vKUm\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Report\",\"col\":3}},{\"id\":\"nZBcUEp9qX\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"G75pEAMfz3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Elements</b></span>\",\"col\":12}},{\"id\":\"fNzBTM1yoH\",\"type\":\"card\",\"data\":{\"card_name\":\"Modules\",\"col\":4}},{\"id\":\"FIcaBFzFOX\",\"type\":\"card\",\"data\":{\"card_name\":\"Models\",\"col\":4}},{\"id\":\"j7EWIs-PNM\",\"type\":\"card\",\"data\":{\"card_name\":\"Views\",\"col\":4}},{\"id\":\"FN9mZJ3h18\",\"type\":\"card\",\"data\":{\"card_name\":\"Scripting\",\"col\":4}},{\"id\":\"1CwNqNGwlr\",\"type\":\"card\",\"data\":{\"card_name\":\"Packages\",\"col\":4}},{\"id\":\"T6ycb7L3qm\",\"type\":\"card\",\"data\":{\"card_name\":\"System Logs\",\"col\":4}}]",
  "creation": "2021-01-02 10:51:16.579957",
  "docstatus": 0,
  "doctype": "Workspace",
@@ -275,7 +275,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-04-06 11:43:19.902789",
+ "modified": "2023-04-11 11:53:19.861093",
  "modified_by": "Administrator",
  "module": "Core",
  "name": "Build",
@@ -288,13 +288,6 @@
  "roles": [],
  "sequence_id": 5.0,
  "shortcuts": [
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "zzzz",
-   "type": "Links",
-   "url_to": "http://www.google.com"
-  },
   {
    "doc_view": "",
    "label": "DocType",

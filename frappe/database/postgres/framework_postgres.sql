@@ -1,7 +1,5 @@
 -- Core Elements to install WNFramework
 -- To be called from install.py
-
-
 --
 -- Table structure for table "tabDocField"
 --
@@ -69,13 +67,11 @@ CREATE TABLE "tabDocField" (
   "hide_days" smallint NOT NULL DEFAULT 0,
   "hide_seconds" smallint NOT NULL DEFAULT 0,
   PRIMARY KEY ("name")
-) ;
-
+);
 create index on "tabDocField" ("parent");
 create index on "tabDocField" ("label");
 create index on "tabDocField" ("fieldtype");
 create index on "tabDocField" ("fieldname");
-
 --
 -- Table structure for table "tabDocPerm"
 --
@@ -109,10 +105,8 @@ CREATE TABLE "tabDocPerm" (
   "print" smallint NOT NULL DEFAULT 1,
   "email" smallint NOT NULL DEFAULT 1,
   PRIMARY KEY ("name")
-) ;
-
+);
 create index on "tabDocPerm" ("parent");
-
 --
 -- Table structure for table "tabDocType Action"
 --
@@ -134,10 +128,8 @@ CREATE TABLE "tabDocType Action" (
   "action_type" varchar(140) NOT NULL,
   "action" varchar(140) NOT NULL,
   PRIMARY KEY ("name")
-) ;
-
+);
 create index on "tabDocType Action" ("parent");
-
 --
 -- Table structure for table "tabDocType Link"
 --
@@ -159,11 +151,8 @@ CREATE TABLE "tabDocType Link" (
   "link_doctype" varchar(140) NOT NULL,
   "link_fieldname" varchar(140) NOT NULL,
   PRIMARY KEY ("name")
-) ;
-
+);
 create index on "tabDocType Link" ("parent");
-
-
 --
 -- Table structure for table "tabDocType"
 --
@@ -233,8 +222,7 @@ CREATE TABLE "tabDocType" (
   "migration_hash" varchar(255) DEFAULT NULL,
   "translated_doctype" smallint NOT NULL DEFAULT 0,
   PRIMARY KEY ("name")
-) ;
-
+);
 --
 -- Table structure for table "tabSeries"
 --
@@ -244,8 +232,7 @@ CREATE TABLE "tabSeries" (
   "name" varchar(100),
   "current" bigint NOT NULL DEFAULT 0,
   PRIMARY KEY ("name")
-) ;
-
+);
 --
 -- Table structure for table "tabSessions"
 --
@@ -260,9 +247,7 @@ CREATE TABLE "tabSessions" (
   "device" varchar(255) DEFAULT 'desktop',
   "status" varchar(20) DEFAULT NULL
 );
-
 create index on "tabSessions" ("sid");
-
 --
 -- Table structure for table "tabSingles"
 --
@@ -273,25 +258,21 @@ CREATE TABLE "tabSingles" (
   "field" varchar(255) DEFAULT NULL,
   "value" text
 );
-
 create index on "tabSingles" ("doctype", "field");
-
 --
 -- Table structure for table "__Auth"
 --
 
 DROP TABLE IF EXISTS "__Auth";
 CREATE TABLE "__Auth" (
-	"doctype" VARCHAR(140) NOT NULL,
-	"name" VARCHAR(255) NOT NULL,
-	"fieldname" VARCHAR(140) NOT NULL,
-	"password" TEXT NOT NULL,
-	"encrypted" int NOT NULL DEFAULT 0,
-	PRIMARY KEY ("doctype", "name", "fieldname")
+  "doctype" VARCHAR(140) NOT NULL,
+  "name" VARCHAR(255) NOT NULL,
+  "fieldname" VARCHAR(140) NOT NULL,
+  "password" TEXT NOT NULL,
+  "encrypted" int NOT NULL DEFAULT 0,
+  PRIMARY KEY ("doctype", "name", "fieldname")
 );
-
 create index on "__Auth" ("doctype", "name", "fieldname");
-
 --
 -- Table structure for table "tabFile"
 --
@@ -316,11 +297,9 @@ CREATE TABLE "tabFile" (
   "attached_to_doctype" varchar(255) DEFAULT NULL,
   PRIMARY KEY ("name")
 );
-
 create index on "tabFile" ("parent");
 create index on "tabFile" ("attached_to_name");
 create index on "tabFile" ("attached_to_doctype");
-
 --
 -- Table structure for table "tabDefaultValue"
 --
@@ -341,6 +320,5 @@ CREATE TABLE "tabDefaultValue" (
   "defkey" varchar(255) DEFAULT NULL,
   PRIMARY KEY ("name")
 );
-
 create index on "tabDefaultValue" ("parent");
 create index on "tabDefaultValue" ("parent", "defkey");

@@ -1,5 +1,76 @@
-{% extends "templates/web.html" %}
+{% extends "templates/login_web.html" %}
+{% block style %}
+<style>
+	@font-face {
+		font-family: "ITC Avant Garde Gothic Bold Book";
+		src: url("/files/ITCAvantGardeStd-BoldObl.otf");
+	}
 
+	nav {
+		display: none !important;
+	}
+
+	footer {
+		display: none !important;
+	}
+
+	#page-login {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: row-reverse;
+		flex: 1;
+		justify-content: center;
+		align-items: center;
+		background: white;
+	}
+
+	.page-content-wrapper {
+		flex-grow: 1;
+		width: 100%;
+	}
+
+	.login-right {
+		flex-grow: 1;
+		width: 100%;
+		height: 100%;
+		padding-top: 5rem;
+		background-image: url(/files/bg.png);
+	}
+
+	.login-right-text {
+		font-family: "ITC Avant Garde Gothic Bold Book";
+		font-weight: 600;
+		font-size: 2.5rem;
+		line-height: 50px;
+		color: #fed350;
+		padding-left: 3rem;
+	}
+
+	.login-right-img {
+		padding-top: 4rem;
+		padding-left: 3rem;
+		max-width: 500px;
+		height: auto;
+	}
+
+	.for-login .page-card-head img,
+	.for-forgot .page-card-head img,
+	.for-signup .page-card-head img,
+	.for-email-login .page-card-head img {
+		max-height: 70px !important;
+	}
+
+	.for-login .page-card,
+	.for-forgot .page-card,
+	.for-signup .page-card,
+	.for-email-login .page-card {
+		box-shadow: none !important;
+	}
+</style>
+{% endblock %}
 {% macro email_login_body() -%}
 {% if not disable_user_pass_login or (ldap_settings and ldap_settings.enabled) %}
 <div class="page-card-body">
@@ -73,7 +144,9 @@
 		<div class="text-center my-5">
 			<h4>{{ _("Javascript is disabled on your browser") }}</h4>
 			<p class="text-muted">
-				{{ _("You need to enable JavaScript for your app to work.") }}<br>{{ _("To enable it follow the instructions in the following link: {0}").format("<a href='https://enable-javascript.com/'>enable-javascript.com</a></p>") }}
+				{{ _("You need to enable JavaScript for your app to work.") }}<br>{{ _("To enable it follow the
+				instructions in the following link: {0}").format("<a
+					href='https://enable-javascript.com/'>enable-javascript.com</a></p>") }}
 		</div>
 	</noscript>
 	<section class='for-login'>
@@ -95,7 +168,7 @@
 								<a href="{{ provider.auth_url }}"
 									class="btn btn-block btn-default btn-sm btn-login-option btn-{{ provider.name }}">
 									{% if provider.icon %}
-										{{ provider.icon }}
+									{{ provider.icon }}
 									{% endif %}
 									{{ _("Login With {0}").format(provider.provider_name) }}</a>
 							</div>
@@ -104,7 +177,7 @@
 					</div>
 				</div>
 				{% else %}
-					{{ email_login_body() }}
+				{{ email_login_body() }}
 				{%- endif -%}
 			</form>
 		</div>
@@ -121,7 +194,7 @@
 		<div class="login-content page-card">
 			{{ logo_section() }}
 			<form class="form-signin form-login" role="form">
-			{{ email_login_body() }}
+				{{ email_login_body() }}
 			</form>
 		</div>
 		{%- if not disable_signup and not disable_user_pass_login -%}
@@ -140,7 +213,8 @@
 			{%- else -%}
 			<div class='page-card-head mb-2'>
 				<span class='indicator gray'>{{_("Signup Disabled")}}</span>
-				<p class="text-muted text-normal sign-up-message mt-1 mb-8">{{_("Signups have been disabled for this website.")}}</p>
+				<p class="text-muted text-normal sign-up-message mt-1 mb-8">{{_("Signups have been disabled for this
+					website.")}}</p>
 				<div><a href='/' class='btn btn-primary btn-md'>{{ _("Home") }}</a></div>
 			</div>
 			{%- endif -%}
@@ -171,8 +245,8 @@
 					</div>
 				</div>
 				<div class="page-card-actions">
-					<button class="btn btn-sm btn-primary btn-block btn-forgot"
-						type="submit">{{ _("Reset Password") }}</button>
+					<button class="btn btn-sm btn-primary btn-block btn-forgot" type="submit">{{ _("Reset Password")
+						}}</button>
 					<p class="text-center sign-up-message">
 						<a href="#login">{{ _("Back to Login") }}</a>
 					</p>
